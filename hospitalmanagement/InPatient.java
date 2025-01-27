@@ -1,0 +1,33 @@
+package com.encapsulation.hospitalmanagement;
+
+import java.util.ArrayList;
+import java.util.List;
+
+// Class representing an In-Patient
+class InPatient extends Patient implements MedicalRecord {
+    private double dailyRate;
+    private int daysAdmitted;
+    private List<String> medicalRecords;
+
+    public InPatient(String patientId, String name, int age, double dailyRate, int daysAdmitted) {
+        super(patientId, name, age);
+        this.dailyRate = dailyRate;
+        this.daysAdmitted = daysAdmitted;
+        this.medicalRecords = new ArrayList<>();
+    }
+
+    @Override
+    public double calculateBill() {
+        return dailyRate * daysAdmitted; // Billing logic for in-patients
+    }
+
+    @Override
+    public void addRecord(String record) {
+        medicalRecords.add(record);
+    }
+
+    @Override
+    public String viewRecords() {
+        return String.join(", ", medicalRecords);
+    }
+}
